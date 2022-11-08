@@ -5,10 +5,10 @@ author: Atsushi Sakai(@Atsushi_twi)
 modified: huiming zhou
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.special import comb
 import draw
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.special import comb
 
 
 def calc_4points_bezier_path(sx, sy, syaw, gx, gy, gyaw, offset):
@@ -82,10 +82,12 @@ def simulation():
         pathy.append(py)
 
         plt.cla()
-        plt.plot(sx, sy, linestyle='-', marker='o', color='dimgray', label="Control Points")
+        plt.plot(sx, sy, linestyle='-', marker='o',
+                 color='dimgray', label="Control Points")
         plt.plot(x, y, color='dodgerblue')
         plt.plot(xx, yy, color='cyan')
-        plt.plot(pathx, pathy, color='darkorange', linewidth=2, label="Bezier Path")
+        plt.plot(pathx, pathy, color='darkorange',
+                 linewidth=2, label="Bezier Path")
         plt.plot(px, py, marker='o')
         plt.axis("equal")
         plt.legend()
@@ -101,7 +103,8 @@ def main():
     gx, gy, gyaw = 0.0, -3.0, np.deg2rad(-45.0)
     offset = 3.0
 
-    path, control_points = calc_4points_bezier_path(sx, sy, syaw, gx, gy, gyaw, offset)
+    path, control_points = calc_4points_bezier_path(
+        sx, sy, syaw, gx, gy, gyaw, offset)
 
     t = 0.8  # Number in [0, 1]
     x_target, y_target = bezier(t, control_points)
@@ -142,4 +145,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    # simulation()
+    simulation()
